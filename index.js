@@ -120,6 +120,19 @@ class SortRow extends React.Component {
   }
 
   render() {
+    const Row = React.cloneElement(
+      this.props.renderRow(
+        this.props.rowData.data,
+        this.props.rowData.section,
+        this.props.rowData.index,
+        null,
+        true,
+      ),
+      {
+        isActive: true,
+      }
+    )
+
     return (
       <Animated.View
         ref="view"
@@ -129,13 +142,7 @@ class SortRow extends React.Component {
           this.props.list.state.pan.getLayout(),
         ]}
       >
-        {this.props.renderRow(
-          this.props.rowData.data,
-          this.props.rowData.section,
-          this.props.rowData.index,
-          null,
-          true
-        )}
+        {Row}
       </Animated.View>
     )
   }
